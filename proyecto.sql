@@ -20,5 +20,14 @@ telefono varchar(15),
 dedicacion enum ('exclusivo', 'semi-exclusivo', 'simple'),
 primary key (dni)
 );
-*/
-insert into docentes values (30709655, 'Juan', 'Diaz', 'Rafael oblig','154127531', 'simple');
+
+insert into docentes values (30709655, 'Juan', 'Diaz', 'Rafael oblig','154127531', 'simple');*/
+use proyecto;
+
+create table Materias (
+cod int not null auto_increment,
+nombre varchar(30),
+dni_responsable int,
+primary key (cod),
+foreign key (dni_responsable) references Docentes (dni)
+)
