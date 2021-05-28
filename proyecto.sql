@@ -52,8 +52,8 @@ codigo int not null auto_increment,
 nota int,
 fecha date,
 dni_califica int,
-dni_alumno int,
-cod_actividad int,
+dni_alumno int not null,
+cod_actividad int not null,
 primary key (codigo),
 foreign key (dni_califica) references Docentes(dni),
 constraint fkresolucion foreign key (dni_alumno, cod_actividad) references Realiza (dni, cod_actividad)
@@ -87,7 +87,6 @@ foreign key (dni_docente) references Docentes (dni),
 foreign key (cod_facultad) references Facultad (codigo),
 foreign key (cod_cargo) references Cargo (codigo)  
 );
-*/
 create table Equipo (
 dni_docente int not null,
 cod_materia int not null,
@@ -96,3 +95,18 @@ foreign key (dni_docente) references Docentes (dni),
 foreign key (cod_materia) references Materias (cod)
 );
 
+
+delimiter //
+create trigger alta_docente before insert on Equipo
+FOR EACH ROW
+BEGIN
+	if new.dni_docente <> materias.dni_responsable then
+		insert into Equipo values(new.dni_docente, new.cod_materia);
+	END IF;
+END; //
+delimiter ;
+*/
+/*
+insert into Materias values (null, 'Base de Datoas', 30709654);
+*/
+insert into Equipo values(30709655, 1);
