@@ -21,8 +21,6 @@ dedicacion enum ('exclusivo', 'semi-exclusivo', 'simple'),
 primary key (dni)
 );
 
-insert into docentes values (30709655, 'Juan', 'Diaz', 'Rafael oblig','154127531', 'simple');
-
 create table Materias (
 cod int not null auto_increment,
 nombre varchar(30),
@@ -87,6 +85,7 @@ foreign key (dni_docente) references Docentes (dni),
 foreign key (cod_facultad) references Facultad (codigo),
 foreign key (cod_cargo) references Cargo (codigo)  
 );
+
 create table Equipo (
 dni_docente int not null,
 cod_materia int not null,
@@ -95,18 +94,34 @@ foreign key (dni_docente) references Docentes (dni),
 foreign key (cod_materia) references Materias (cod)
 );
 
-
 delimiter //
 create trigger alta_docente before insert on Equipo
 FOR EACH ROW
 BEGIN
-	if new.dni_docente <> materias.dni_responsable then
-		insert into Equipo values(new.dni_docente, new.cod_materia);
+	if exists 
+    (Select * from materias 
+	 where (new.cod_materia = Materias.cod) and (new.dni_docente = Materias.dni_responsable)) 
+	then
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error: El Docente ya es responsable de la materia';
 	END IF;
 END; //
 delimiter ;
+
+Drop  trigger alta_docente;
 */
-/*
-insert into Materias values (null, 'Base de Datoas', 30709654);
-*/
-insert into Equipo values(30709655, 1);
+delimiter //
+create trigger modificar_responsable before update on Materias
+FOR EACH ROW
+BEGIN
+	if exists 
+    (Select * from Equipo 
+	 where (Equipo.cod_materia = new.cod) and (Equipo.dni_docente = new.dni_responsable)) 
+	then
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Error: El Docente ya esta en el quipo';
+	END IF;
+END; //
+delimiter ;
+
+Drop trigger modificar_responsable;
