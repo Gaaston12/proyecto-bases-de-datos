@@ -47,7 +47,7 @@ foreign key (cod_actividad) references Actividad(codigo)
 
 Create table Resolucion(
 codigo int not null auto_increment,
-nota int,
+nota float,
 fecha date,
 dni_califica int,
 dni_alumno int not null,
@@ -109,7 +109,7 @@ END; //
 delimiter ;
 
 Drop  trigger alta_docente;
-*/
+
 delimiter //
 create trigger modificar_responsable before update on Materias
 FOR EACH ROW
@@ -123,5 +123,5 @@ BEGIN
 	END IF;
 END; //
 delimiter ;
+*/
 
-Drop trigger modificar_responsable;
