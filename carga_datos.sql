@@ -1,13 +1,13 @@
 use proyecto;
 
 /*Carga de Docentes*/
-insert into docentes values (130, 'Juan', 'Diaz', 'Rafael oblig','154127531', 'simple');
-insert into docentes values (131, 'Perez', 'Estela', 'Las Heras', '1231', 'simple'); 
-insert into docentes values (132, 'Lopez', 'Jose', 'Italia', '1232', 'simple'); 
+insert into docentes values (130, 'Juan', 'Diaz', 'Rafael oblig','154127531', 'exclusivo');
+insert into docentes values (131, 'Perez', 'Estela', 'Las Heras', '1231', 'exclusivo'); 
+insert into docentes values (132, 'Lopez', 'Jose', 'Italia', '1232', 'exclusivo'); 
 insert into docentes values (133, 'Garcia', 'Facundo', 'España', '1233', 'simple'); 
 insert into docentes values (134, 'Aguero', 'Matias', 'Alberdi', '1234', 'simple'); 
 insert into docentes values (135, 'Oga', 'German', 'bs as', '1235', 'simple'); 
-insert into docentes values (136, 'Fernandez', 'Valentina', 'Colon', '1232', 'simple'); 
+insert into docentes values (136, 'Fernandez', 'Valentina', 'Colon', '1232', 'semi-exclusivo'); 
 
 /*Carga de cargos*/
 insert into cargo(descripcion) values("Profesor Adjunto");
@@ -60,7 +60,7 @@ insert into cursa(dni_alumno,cod_materia) values (125,3);
 /*Carga Actividad*/
 insert into Actividad(descripcion,cod_materia) values ('SQL', 1);
 insert into Actividad(descripcion,cod_materia) values ('Integrales', 2);
-insert into Actividad(descripcion,cod_materia) values ('Trabajo Practico de Grafos', 2);
+insert into Actividad(descripcion,cod_materia) values ('Trabajo Practico de Grafos', 3);
 
 /*Carga actividad Realizadas*/
 insert into Realiza values (123,1);
