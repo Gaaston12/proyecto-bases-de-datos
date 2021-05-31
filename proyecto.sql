@@ -49,7 +49,7 @@ create table if not exists Resolucion(
 	codigo int not null auto_increment,
 	nota float,
 	fecha datetime DEFAULT now(),
-	dni_califica int,
+	dni_califica int not null,
 	dni_alumno int not null,
 	cod_actividad int not null,
 	primary key (codigo),
@@ -144,7 +144,8 @@ create trigger ingreso_auditoria
     after update on Resolucion 
     for each row 
     begin 
-        insert into Auditoria(codigo_resolucion,calificacion_anterior,calificacion_nueva,dni_docente) values(old.codigo,old.nota,new.nota,new.dni_califica);
+        insert into Auditoria(codigo_resolucion,calificacion_anterior,calificacion_nueva,dni_docente)
+        values(old.codigo,old.nota,new.nota,new.dni_califica);
     end;  
 //    
 delimiter ;
