@@ -2,7 +2,7 @@ create database if not exists Proyecto;
 use proyecto;
 
 create table if not exists Alumnos (
-	dni int not null ,
+	dni int not null,
 	nro int not null auto_increment unique,
 	apellido varchar(30) not null,
 	nombre varchar(30) not null,
@@ -48,7 +48,7 @@ create table if not exists Realiza (
 create table if not exists Resolucion(
 	codigo int not null auto_increment,
 	nota float,
-	fecha date,
+	fecha datetime DEFAULT now(),
 	dni_califica int,
 	dni_alumno int not null,
 	cod_actividad int not null,
@@ -70,17 +70,17 @@ create table if not exists Cargo (
 );
 
 create table if not exists Cursa (
-	dni int not null,
+	dni_alumno int not null,
 	cod_materia int not null,
-	constraint pkrealiza primary key (dni, cod_materia),
-	foreign key (dni) references Alumnos(dni), 
+	constraint pkrealiza primary key (dni_alumno, cod_materia),
+	foreign key (dni_alumno) references Alumnos(dni), 
 	foreign key (cod_materia) references Materias(cod)
 );
 
 create table if not exists Pertenece (
 	dni_docente int not null,
 	cod_facultad int not null,
-	cod_cargo int,
+	cod_cargo int not null,
 	constraint pkpertenece primary key (dni_docente, cod_facultad),
 	foreign key (dni_docente) references Docentes (dni),
 	foreign key (cod_facultad) references Facultad (codigo),
@@ -97,13 +97,13 @@ create table if not exists Equipo (
 
 create table if not exists Auditoria(
 	id int not null auto_increment, 
-    id_resoludcion int not null,
-    fecha date,
+    codigo_resolucion int not null,
+    fecha datetime DEFAULT now(),
     calificacion_anterior float,
     calificacion_nueva float,
     dni_docente int not null,
     constraint pkAuditoria primary key (id),
-    foreign key (id_resoludcion) references Resolucion (codigo),
+    foreign key (codigo_resolucion) references Resolucion (codigo),
     foreign key (dni_docente) references Docentes (dni)
 );
 
@@ -144,7 +144,7 @@ create trigger ingreso_auditoria
     after update on Resolucion 
     for each row 
     begin 
-        insert into Auditoria values(null, old.codigo,current_date(), old.nota,new.nota,new.dni_califica);
+        insert into Auditoria(codigo_resolucion,calificacion_anterior,calificacion_nueva,dni_docente) values(old.codigo,old.nota,new.nota,new.dni_califica);
     end;  
 //    
 delimiter ;
