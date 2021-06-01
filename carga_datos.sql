@@ -15,7 +15,7 @@ insert into cargo(descripcion) values("Jefe de Trabajos Prácticos");
 insert into cargo(descripcion) values("Ayudante de Primera");
 
 /*Carga de Facultad*/
-insert into facultad(descripcion) values("Computacipon");
+insert into facultad(descripcion) values("Computacion");
 insert into facultad(descripcion) values("Ingenieria");
 
 /*Se asignan docentes a las facultades*/
@@ -96,5 +96,4 @@ Update Resolucion
 Update Resolucion 
 	set nota = 6, dni_califica = 136 where (dni_alumno = 124 and cod_actividad = 1);
 
-/*Muesto aditoria*/
-/*select * from Auditoria;*/
+
