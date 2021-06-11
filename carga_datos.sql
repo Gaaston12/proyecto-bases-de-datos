@@ -61,6 +61,8 @@ insert into cursa(dni_alumno,cod_materia) values (125,3);
 insert into Actividad(descripcion,cod_materia) values ('SQL', 1);
 insert into Actividad(descripcion,cod_materia) values ('Integrales', 2);
 insert into Actividad(descripcion,cod_materia) values ('Trabajo Practico de Grafos', 3);
+insert into Actividad(descripcion,cod_materia) values ('Normalizacion', 1);
+insert into Actividad(descripcion,cod_materia) values ('Algebra relacional', 1);
 
 /*Carga actividad Realizadas*/
 insert into Realiza values (123,1);
@@ -68,6 +70,7 @@ insert into Realiza values (123,2);
 insert into Realiza values (123,3);
 insert into Realiza values (124,1);
 insert into Realiza values (124,3);
+insert into Realiza values (124,5);
 insert into Realiza values (125,2);
 insert into Realiza values (125,3);
 
@@ -76,6 +79,8 @@ insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(9, 130, 123
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(5, 131, 123, 2);
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(5, 134, 123, 3);
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(9, 134, 124, 1);
+insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(9, 134, 124, 4);
+insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(9, 134, 124, 5);
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(5, 136, 124, 3);
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(5, 133, 125, 3);
 insert Resolucion(nota,dni_califica,dni_alumno,cod_actividad) Values(5, 131, 125, 2);
