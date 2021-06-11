@@ -8,24 +8,24 @@ import java.util.Scanner;
 public class DaoManager {
 
 	private String host = "localhost";
+	private String port = "3636";
 	private String database = "Proyecto";
 	private String user = "root";
 	private String password = "root";
 	
 	private Connection connection;
-	private AlumnoDao alumnoDao = null;
-	private MateriaDao materiaDao = null;
-	private ActividadDao actividadDao = null;
-	
-	
-	public DaoManager() {	
+	private AlumnoDao alumnoDao;
+	private MateriaDao materiaDao;
+	private ActividadDao actividadDao;
 		
+	public DaoManager() {	
+		this.host = "localhost";
+		this.port = "3636";
+		this.database = "Proyecto";
+		this.user = "root";
+		this.password = "root";
 	}
-	
-//	public DaoManager(String host, String user, String password, String database) throws SQLException {
-//		connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database,user,password); 
-//	}
-//			
+
 	private Connection connectionSql() throws SQLException, ClassNotFoundException{
 		String driver = "com.mysql.cj.jdbc.Driver";
 		Class.forName(driver);
@@ -71,18 +71,11 @@ public class DaoManager {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public void configuration() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Cofiguracion de la coneccion");
-		System.out.println("Ingrese el puerto: ");
-		this.host = input.next();
-		System.out.println("Nombre de la base de datos: ");
-		this.database = input.next();
-		System.out.println("Usuario: ");
-		this.user = input.next();
-		System.out.println("Contaseña: ");
-		this.password = input.next();
+		
+	public void setPort(String port) {
+		this.port = port;
 	}
+
+
 	
 }
