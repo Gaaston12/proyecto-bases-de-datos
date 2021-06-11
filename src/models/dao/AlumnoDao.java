@@ -10,12 +10,12 @@ import models.Alumno;
 
 public class AlumnoDao {
 
-	public static final String TABLE_NAME_ALUMNOS = "Alumnos";
-	public static final String TITLE_COLUMN_DNI = "dni";
-	public static final String TITLE_COLUMN_NAME = "nombre";
-	public static final String TITLE_COLUMN_LASTNAME ="apellido";
-	public static final String TITLE_COLUMN_ADDRESS = "direccion";
-	public static final String TITLE_COLUMN_TEL = "telefono";
+	public static final String TABLE_NAME_ALUMNOS 		= "Alumnos";
+	public static final String TITLE_COLUMN_DNI 		= TABLE_NAME_ALUMNOS+".dni";
+	public static final String TITLE_COLUMN_NAME 		= TABLE_NAME_ALUMNOS+".nombre";
+	public static final String TITLE_COLUMN_LASTNAME 	= TABLE_NAME_ALUMNOS+".apellido";
+	public static final String TITLE_COLUMN_ADDRESS 	= TABLE_NAME_ALUMNOS+".direccion";
+	public static final String TITLE_COLUMN_TEL 		= TABLE_NAME_ALUMNOS+".telefono";
 		
 	private Connection connection;
 		
@@ -25,7 +25,7 @@ public class AlumnoDao {
 	
 	public ArrayList<Alumno> getAlumnos() throws SQLException {
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
-		String sql = "Select * from "+TABLE_NAME_ALUMNOS+";";
+		String sql = "Select * from " + TABLE_NAME_ALUMNOS + ";";
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql); 
 		
@@ -38,11 +38,11 @@ public class AlumnoDao {
 	
 	public static Alumno resultSetToAlumno(ResultSet resultSet) throws SQLException {
 		Alumno alumno = new Alumno();
-		alumno.setDni(resultSet.getInt("dni"));
-		alumno.setNombre(resultSet.getString("nombre"));
-		alumno.setApellido(resultSet.getString("apellido"));
-		alumno.setDireccion(resultSet.getString("direccion"));
-		alumno.setTelefono(resultSet.getString("telefono"));
+		alumno.setDni(resultSet.getInt(TITLE_COLUMN_DNI));
+		alumno.setNombre(resultSet.getString(TITLE_COLUMN_NAME));
+		alumno.setApellido(resultSet.getString(TITLE_COLUMN_LASTNAME));
+		alumno.setDireccion(resultSet.getString(TITLE_COLUMN_ADDRESS));
+		alumno.setTelefono(resultSet.getString(TITLE_COLUMN_TEL));
 		return alumno;
 	}
 	
