@@ -10,8 +10,7 @@ public class main {
 	public static void main(String[] args) {
 		int op = 0;
 		Scanner input = new Scanner(System.in);
-		DaoManager daoManager = configurarConecxion(input);
-				
+		DaoManager daoManager = new DaoManager();
 		do {
 			if (op==0) {
 				menu();
@@ -73,28 +72,4 @@ public class main {
 				
 	}
 
-	private static  DaoManager configurarConecxion(Scanner input) {
-		DaoManager daoManager = new DaoManager();
-		String op = "";
-		do {
-			System.out.println("Si quieres cambiar los datos de conexion ? y/n");
-			 op = input.nextLine();
-		} while (!op.equals("y") && !op.equals("n") );
-		
-		if (op.equals("y") ) {
-			System.out.println("Cofigure su coneccion a la base de datos \n");
-			System.out.println("Ingrese el host: ");
-			daoManager.setHost(input.next());
-			System.out.println("Ingrese el puerto: ");
-			daoManager.setPort(input.next());
-			System.out.println("Nombre de la base de datos: ");
-			daoManager.setDatabase(input.next());
-			System.out.println("Usuario: ");
-			daoManager.setUser(input.next());
-			System.out.println("Contaseña: ");
-			daoManager.setPassword(input.next());
-		}
-		return daoManager;
-	}
-	
 }

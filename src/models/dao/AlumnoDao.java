@@ -32,6 +32,10 @@ public class AlumnoDao {
 		while (resultSet.next()) 
 			alumnos.add(resultSetToAlumno(resultSet));
 		
+		resultSet.close();
+		statement.close();
+		connection.close();
+		
 		return alumnos;
 	}
 		

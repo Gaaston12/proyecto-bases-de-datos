@@ -27,6 +27,9 @@ public class ActividadDao {
 		statement.setString(1, actividad.getDescipcion());
 		statement.setInt(2, actividad.getCod_materia());
 		
+		statement.close();
+		connection.close();
+		
 		if (statement.executeUpdate() > 0)
 			System.out.println("la actividad "+actividad.getDescipcion()+" se inserto correctamente");
 		else	

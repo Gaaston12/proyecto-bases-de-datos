@@ -1,37 +1,35 @@
 package models.dao;
-
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 public class DaoManager {
 
-	private String host = "localhost";
-	private String port = "3636";
-	private String database = "Proyecto";
-	private String user = "root";
-	private String password = "root";
-	
+	private final String FILE_CONFIG_JSON = "config_db.json";
+	private String user;
+	private String password;
+	private String url;
 	private Connection connection;
 	private AlumnoDao alumnoDao;
 	private MateriaDao materiaDao;
 	private ActividadDao actividadDao;
 		
 	public DaoManager() {	
-		this.host = "localhost";
-		this.port = "3306";
-		this.database = "Proyecto";
-		this.user = "root";
-		this.password = "root";
+		loadJson();
+		System.out.println("Conexion = Url: "+url+" User: "+user+ " password: "+password);
 	}
 
 	private Connection connectionSql() throws SQLException, ClassNotFoundException{
 		String driver = "com.mysql.cj.jdbc.Driver";
 		Class.forName(driver);
 		if (connection == null) {
-			connection = DriverManager.getConnection("jdbc:mysql://" + host+":"+port+ "/" + database + "?serverTimezone=UTC", user, password);
-			
+			connection = DriverManager.getConnection("jdbc:mysql://" + url + "?serverTimezone=UTC", user, password);
 		}
 		
 		return connection;
@@ -54,30 +52,35 @@ public class DaoManager {
 			actividadDao = new ActividadDao(connectionSql());
 		return actividadDao;
 	}
-	
-	
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public void setDatabase(String database) {
-		this.database = database;
+		
+	public String getUser() {
+		return user;
 	}
 
 	public void setUser(String user) {
 		this.user = user;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getUrl() {
+		return url;
 	}
-		
-	public void setPort(String port) {
-		this.port = port;
-	}
-	
+
 	public void closeConnection() throws SQLException {
 		connection.close();
 	}
 	
+	private void loadJson() {
+		JSONParser parser = new JSONParser();
+				
+		try {
+			FileReader file = new FileReader(FILE_CONFIG_JSON);
+			JSONObject jsonObject = (JSONObject) parser.parse(file);
+			this.url = jsonObject.get("Host")+"/"+jsonObject.get("Database"); 
+			this.user = (String) jsonObject.get("User");
+			this.password = (String) jsonObject.get("Password");
+			file.close();
+		} catch (IOException | ParseException e) {
+			System.out.println("Error al leer la configuracion de la base de datos "+e.getMessage());
+		}
+	}
 }
