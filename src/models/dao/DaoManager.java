@@ -20,7 +20,7 @@ public class DaoManager {
 		
 	public DaoManager() {	
 		this.host = "localhost";
-		this.port = "3636";
+		this.port = "3306";
 		this.database = "Proyecto";
 		this.user = "root";
 		this.password = "root";
@@ -30,7 +30,7 @@ public class DaoManager {
 		String driver = "com.mysql.cj.jdbc.Driver";
 		Class.forName(driver);
 		if (connection == null) {
-			connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database + "?serverTimezone=UTC", user, password);
+			connection = DriverManager.getConnection("jdbc:mysql://" + host+":"+port+ "/" + database + "?serverTimezone=UTC", user, password);
 			
 		}
 		
@@ -75,7 +75,9 @@ public class DaoManager {
 	public void setPort(String port) {
 		this.port = port;
 	}
-
-
+	
+	public void closeConnection() throws SQLException {
+		connection.close();
+	}
 	
 }
