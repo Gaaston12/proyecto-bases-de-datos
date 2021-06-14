@@ -32,6 +32,8 @@ insert into pertenece(dni_docente,cod_facultad,cod_cargo) values(136,2,3);
 insert into Materias(nombre,dni_responsable) values ('Base de Datos', 130);
 insert into Materias(nombre,dni_responsable) values ('Calculo', 131);
 insert into Materias(nombre,dni_responsable) values ('Algoritmos', 132);
+insert into Materias(nombre,dni_responsable) values ('Base de Datos 2', 130);/*Materia sin equipo*/
+insert into Materias(nombre,dni_responsable) values ('Calculo 2', 131);/*Materia sin equipo*/
 
 /*Carga Equipo docentes*/
 insert into Equipo values(133, 1);
@@ -47,6 +49,8 @@ insert into Alumnos(dni,apellido,nombre,direccion,telefono)
 	values (124, 'Fernandez', 'Nicolas', 'Pueyrredon 110', 1502);
 insert into Alumnos(dni,apellido,nombre,direccion,telefono) 
 	values (125, 'Giordano', 'Marino', 'Las Heras 111', 1503);
+insert into Alumnos(dni,apellido,nombre,direccion,telefono) /*Alumno que es docente*/
+	values (130, 'Diaz', 'Juan', 'Rafael oblig','154127531');
 
 /*Asigna los alumnos a las materias*/
 insert into cursa(dni_alumno,cod_materia) values (123,1);
