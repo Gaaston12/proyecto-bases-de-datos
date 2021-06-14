@@ -7,7 +7,7 @@
 * **Nicolas Madariaga** - [Perfil Nicolas](https://github.com/NicoMadariaga)
 
 # Configure connection and use 
-1. Para configurar la coneccion a la base de datos se debe modificar los para metros dentro del archivo config_db.json
+1. Para configurar la coneccion a la base de datos se debe modificar los parametros dentro del archivo config_db.json
 2. Crear la base de datos ejecutar sql/proyecto.sql
 3. Cargar datos en la base de datos ejecutar sql/carga_datos.sql
 4. Realizar las consultas de la actividad 6 ejecutar sql/consultas.sql
