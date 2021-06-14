@@ -26,14 +26,14 @@ public class ActividadDao {
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, actividad.getDescipcion());
 		statement.setInt(2, actividad.getCod_materia());
-		
-		statement.close();
-		connection.close();
-		
+				
 		if (statement.executeUpdate() > 0)
 			System.out.println("la actividad "+actividad.getDescipcion()+" se inserto correctamente");
 		else	
 			System.out.println("No se pudo insertar la actividad "+actividad.getDescipcion());
+		
+		statement.close();
+		
 	}
 	
 }

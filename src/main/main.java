@@ -19,6 +19,7 @@ public class main {
 			input.nextLine();
 			
 			try {				
+				
 				switch (op) {
 				case 1: daoManager.getActividadDao().insert(cargarActividad(input));
 					break;
@@ -29,12 +30,14 @@ public class main {
 				case 3: System.out.println("Ingrese el nombre de la materia"); 
 					System.out.println(daoManager.getMateriaDao().getAlumnos(input.nextLine()));
 					break;
-				case 4: System.out.println("Adios");
+				case 4: daoManager.closeConnection();
+					System.out.println("Adios");
 					break;
 				default: System.out.println("Ingrese una opcion valida");
 						 op = 0;
 					break;
 				}
+				
 				
 			} catch (SQLException | ClassNotFoundException e) {
 				System.out.println("Error sql \n"+e.getMessage());

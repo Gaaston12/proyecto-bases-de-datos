@@ -70,6 +70,7 @@ insert into Realiza values (123,2);
 insert into Realiza values (123,3);
 insert into Realiza values (124,1);
 insert into Realiza values (124,3);
+insert into Realiza values (124,4);
 insert into Realiza values (124,5);
 insert into Realiza values (125,2);
 insert into Realiza values (125,3);

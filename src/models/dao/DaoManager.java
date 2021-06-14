@@ -28,7 +28,7 @@ public class DaoManager {
 	private Connection connectionSql() throws SQLException, ClassNotFoundException{
 		String driver = "com.mysql.cj.jdbc.Driver";
 		Class.forName(driver);
-		if (connection == null) {
+		if (connection == null || connection.isClosed()) {
 			connection = DriverManager.getConnection("jdbc:mysql://" + url + "?serverTimezone=UTC", user, password);
 		}
 		

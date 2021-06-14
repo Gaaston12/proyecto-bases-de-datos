@@ -34,8 +34,7 @@ public class AlumnoDao {
 		
 		resultSet.close();
 		statement.close();
-		connection.close();
-		
+				
 		return alumnos;
 	}
 		

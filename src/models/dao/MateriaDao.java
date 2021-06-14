@@ -45,8 +45,7 @@ public class MateriaDao {
 		}
 		resultSet.close();
 		statement.close();
-		connection.close();
-		
+				
 		return alumnos;
 	}
 	
@@ -55,12 +54,13 @@ public class MateriaDao {
 					+ " where " + TITLE_COLUMN_COD + " = "+ cod +";";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
-		statement.close();
-		connection.close();
 		if (statement.executeUpdate() > 0) 
 			System.out.println(" Se elimino correctamente la materia "+cod);
 		else
 			System.out.println(" Error al eliminar la materia "+cod+" puede que no exista");
+		
+		statement.close();
+		
 	}
 	
 }

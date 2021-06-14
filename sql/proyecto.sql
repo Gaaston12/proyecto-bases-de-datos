@@ -1,3 +1,4 @@
+drop database proyecto;
 create database if not exists Proyecto;
 use proyecto;
 
@@ -26,7 +27,7 @@ create table if not exists Materias (
 	nombre varchar(30),
 	dni_responsable int,
 	primary key (cod),
-	foreign key (dni_responsable) references Docentes (dni)
+	foreign key (dni_responsable) references Docentes (dni) on update cascade on delete cascade
 );
 
 create table if not exists Actividad (
@@ -34,15 +35,15 @@ create table if not exists Actividad (
 	descripcion varchar(50),
 	cod_materia int not null,
 	primary key (codigo),
-	foreign key (cod_materia) references Materias (cod)
+	foreign key (cod_materia) references Materias (cod) on update cascade on delete cascade
 );
 
 create table if not exists Realiza (
 	dni int not null,
 	cod_actividad int not null,
 	constraint pkrealiza primary key (dni, cod_actividad),
-	foreign key (dni) references Alumnos(dni), 
-	foreign key (cod_actividad) references Actividad(codigo)
+	foreign key (dni) references Alumnos(dni) on update cascade on delete cascade, 
+	foreign key (cod_actividad) references Actividad(codigo) on update cascade on delete cascade
 );
 
 create table if not exists Resolucion(
@@ -53,8 +54,8 @@ create table if not exists Resolucion(
 	dni_alumno int not null,
 	cod_actividad int not null,
 	primary key (codigo),
-	foreign key (dni_califica) references Docentes(dni),
-	constraint fkresolucion foreign key (dni_alumno, cod_actividad) references Realiza (dni, cod_actividad)
+	foreign key (dni_califica) references Docentes(dni) on update cascade on delete cascade,
+	constraint fkresolucion foreign key (dni_alumno, cod_actividad) references Realiza (dni, cod_actividad) on update cascade on delete cascade
 );
 
 create table if not exists Facultad (
@@ -73,8 +74,8 @@ create table if not exists Cursa (
 	dni_alumno int not null,
 	cod_materia int not null,
 	constraint pkrealiza primary key (dni_alumno, cod_materia),
-	foreign key (dni_alumno) references Alumnos(dni), 
-	foreign key (cod_materia) references Materias(cod)
+	foreign key (dni_alumno) references Alumnos(dni) on update cascade on delete cascade, 
+	foreign key (cod_materia) references Materias(cod) on update cascade on delete cascade
 );
 
 create table if not exists Pertenece (
@@ -82,17 +83,17 @@ create table if not exists Pertenece (
 	cod_facultad int not null,
 	cod_cargo int not null,
 	constraint pkpertenece primary key (dni_docente, cod_facultad),
-	foreign key (dni_docente) references Docentes (dni),
-	foreign key (cod_facultad) references Facultad (codigo),
-	foreign key (cod_cargo) references Cargo (codigo)  
+	foreign key (dni_docente) references Docentes (dni) on update cascade on delete cascade,
+	foreign key (cod_facultad) references Facultad (codigo) on update cascade on delete cascade,
+	foreign key (cod_cargo) references Cargo (codigo) on update cascade on delete cascade  
 );
 
 create table if not exists Equipo (
 	dni_docente int not null,
 	cod_materia int not null,
 	constraint pkequipo primary key (dni_docente, cod_materia),
-	foreign key (dni_docente) references Docentes (dni),
-	foreign key (cod_materia) references Materias (cod)
+	foreign key (dni_docente) references Docentes (dni) on update cascade on delete cascade,
+	foreign key (cod_materia) references Materias (cod) on update cascade on delete cascade
 );
 
 create table if not exists Auditoria(
@@ -103,8 +104,8 @@ create table if not exists Auditoria(
     calificacion_nueva float,
     dni_docente int not null,
     constraint pkAuditoria primary key (id),
-    foreign key (codigo_resolucion) references Resolucion (codigo),
-    foreign key (dni_docente) references Docentes (dni)
+    foreign key (codigo_resolucion) references Resolucion (codigo) on update cascade on delete cascade,
+    foreign key (dni_docente) references Docentes (dni) on update cascade on delete cascade
 );
 
 delimiter //
