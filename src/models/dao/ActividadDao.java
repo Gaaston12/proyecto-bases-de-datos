@@ -7,10 +7,10 @@ import models.Actividad;
 
 public class ActividadDao {
 		
-	public static final String TABLE_NAME_ACTIVIDAD 			= "Actividad";
-	public static final String TITLE_COLUMN_COD 				= TABLE_NAME_ACTIVIDAD+".codigo";
-	public static final String TITLE_COLUMN_DESCRIPTION 		= TABLE_NAME_ACTIVIDAD+".descripcion";
-	public static final String TITLE_COLUMN_COD_COURSE			= TABLE_NAME_ACTIVIDAD+".cod_materia";
+	public static final String TABLE_NAME 				= "Actividad";
+	public static final String TITLE_COLUMN_COD 		= TABLE_NAME+".codigo";
+	public static final String TITLE_COLUMN_DESCRIPTION = TABLE_NAME+".descripcion";
+	public static final String TITLE_COLUMN_COD_COURSE	= TABLE_NAME+".cod_materia";
 	
 	private Connection connection;
 	
@@ -20,7 +20,7 @@ public class ActividadDao {
 	
 	
 	public void insert(Actividad actividad) throws SQLException {
-		String sql = "insert into "+ TABLE_NAME_ACTIVIDAD 
+		String sql = "insert into "+ TABLE_NAME 
 					  + "( " + TITLE_COLUMN_DESCRIPTION + ", " + TITLE_COLUMN_COD_COURSE + " ) values(?,?);";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
