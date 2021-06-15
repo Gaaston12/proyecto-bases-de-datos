@@ -23,15 +23,14 @@ public class main {
 				switch (op) {
 				case 1: daoManager.getActividadDao().insert(cargarActividad(input));
 					break;
-				case 2: System.out.println("Ingrese el codigo de la materia que quiere eliminar");
-					daoManager.getMateriaDao().delete(input.nextInt());		// ver la eliminacion en cascasda	
-					input.nextLine();	
+				case 2: System.out.println("Ingrese el codigo o el nombre de la materia que quiere eliminar");
+					daoManager.getMateriaDao().delete(input.nextLine());		// ver la eliminacion en cascasda	
 					break;
 				case 3: System.out.println("Ingrese el nombre de la materia"); 
 					System.out.println(daoManager.getMateriaDao().getAlumnos(input.nextLine()));
 					break;
 				case 4: daoManager.closeConnection();
-					System.out.println("Adios");
+					System.out.println("La ejecucion se finalizo correctamente");
 					break;
 				default: System.out.println("Ingrese una opcion valida");
 						 op = 0;
@@ -46,7 +45,7 @@ public class main {
 			while ( op > 0 && op < 4 ) {
 				System.out.println(" \n Para volver al menu presione 0 y para salir 4");
 				op = input.nextInt();
-				if (op == 4 ) System.out.println("Adios");
+				if (op == 4 ) System.out.println("La ejecucion se finalizo correctamente");
 			}
 			
 			
@@ -67,7 +66,7 @@ public class main {
 	
 	private static void menu() {
 		
-		System.out.println(" Ingreder una opcion ");
+		System.out.println("\n Ingrese una opcion ");
 		System.out.println(" 1- Insertar una actividad ");
 		System.out.println(" 2- Eliminar una materia ");
 		System.out.println(" 3- Listar alumnos de una materia ");

@@ -66,7 +66,8 @@ public class DaoManager {
 	}
 
 	public void closeConnection() throws SQLException {
-		connection.close();
+		if(connection != null && !connection.isClosed())
+			connection.close();
 	}
 	
 	private void loadJson() {

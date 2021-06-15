@@ -10,12 +10,12 @@ import models.Alumno;
 
 public class AlumnoDao {
 
-	public static final String TABLE_NAME_ALUMNOS 		= "Alumnos";
-	public static final String TITLE_COLUMN_DNI 		= TABLE_NAME_ALUMNOS+".dni";
-	public static final String TITLE_COLUMN_NAME 		= TABLE_NAME_ALUMNOS+".nombre";
-	public static final String TITLE_COLUMN_LASTNAME 	= TABLE_NAME_ALUMNOS+".apellido";
-	public static final String TITLE_COLUMN_ADDRESS 	= TABLE_NAME_ALUMNOS+".direccion";
-	public static final String TITLE_COLUMN_TEL 		= TABLE_NAME_ALUMNOS+".telefono";
+	public static final String TABLE_NAME 				= "Alumnos";
+	public static final String TITLE_COLUMN_DNI 		= TABLE_NAME+".dni";
+	public static final String TITLE_COLUMN_NAME 		= TABLE_NAME+".nombre";
+	public static final String TITLE_COLUMN_LASTNAME 	= TABLE_NAME+".apellido";
+	public static final String TITLE_COLUMN_ADDRESS 	= TABLE_NAME+".direccion";
+	public static final String TITLE_COLUMN_TEL 		= TABLE_NAME+".telefono";
 		
 	private Connection connection;
 		
@@ -25,7 +25,7 @@ public class AlumnoDao {
 	
 	public ArrayList<Alumno> getAlumnos() throws SQLException {
 		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
-		String sql = "Select * from " + TABLE_NAME_ALUMNOS + ";";
+		String sql = "Select * from " + TABLE_NAME + ";";
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql); 
 		
