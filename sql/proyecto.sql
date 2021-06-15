@@ -1,4 +1,3 @@
-drop database proyecto;
 create database if not exists Proyecto;
 use proyecto;
 
